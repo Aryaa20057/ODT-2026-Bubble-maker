@@ -102,9 +102,9 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[-The experience is of interacting with a bubble-making machine where the user controls the motion using buttons. You press to move the ring down into the soap and bring it back up, and at the same time the fan responds to that movement to try and form a bubble. You’re not just watching it happen, you’re kind of “operating” it and figuring out the right timing and position to get a good bubble.
+`-The experience is of interacting with a bubble-making machine where the user controls the motion using buttons. You press to move the ring down into the soap and bring it back up, and at the same time the fan responds to that movement to try and form a bubble. You’re not just watching it happen, you’re kind of “operating” it and figuring out the right timing and position to get a good bubble.
 -We want the players to feel satisfied about getting the timing right and seeing a clean bubble form, but it doesn’t happen perfectly every time, which makes it a bit playful and curious.
--You start experimenting with how fast to press, how high to lift the ring, or when to pause.]`
+-You start experimenting with how fast to press, how high to lift the ring, or when to pause.`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -112,7 +112,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[Write here]`
+`We are designing this project as if we are a small creative studio making a playful interactive installation for a mixed audience of classmates and exhibition visitors, where users actively control the creation of bubbles through simple physical inputs.`
 
 ---
 
@@ -123,15 +123,21 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `Toy` | `Automatic Bubble Machine Toy (generic bubble blower)` | `Inspired the basic idea of dipping a ring into soap solution and using airflow to create bubbles automatically.` |
+| `Object` | `Handheld Bubble Wand` | `Gave insight into how bubble rings need to be dipped fully and then exposed to airflow at the right moment to form bubbles.` |
+| `Video` | `“Arduino Bubble Machine using Servo and DC Motor” (YouTube)` | `Helped understand how to synchronize a servo motor movement with a fan/motor to generate bubbles efficiently.` |
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Write here]`
+`So what really makes our bubble machine different? For starters, it’s not just a simple on/off gadget spinning all day. We actually gave the hardware some “real conversation” every part works together, and the microcontroller keeps everything in sync, mechanics and electronics teaming up. Most bubble machines? They just run a motor on a timer, or expect you to crank a handle. Ours is on another level.
+
+Here’s where things get cool: the fan’s speed changes based on exactly what the servo arm is doing at that moment. The microcontroller always knows where the bubble ring sits during each cycle. When the ring dips into the soap, the fan cuts out completely. As it comes up, the fan starts to spin. Once the ring’s out and ready, the fan blasts at full power. No wasted air, no guessing—it’s like the machine has a mini brain, making decisions every step instead of just repeating itself like a robot.
+
+We didn’t want it totally hands-off, either. We put in two simple buttons so you can move the servo arm yourself set the pace however you want. Maybe sometimes you want a fast dip and a quick burst, or other times you want to slow down and really watch those bubbles build up. The machine actually pays attention to you.
+
+Instead of copying those basic toys with a spinning wand and constant breeze, we tried to capture the way people actually make bubbles: dip the ring, lift it out, and blow at the perfect moment. The machine kind of acts like you just with a little help from electronics.
 
 ---
 
@@ -147,37 +153,45 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Write here]`
+`button press → servo dips ring → ring rises → fan blows air through soap film → bubble forms → repeat
+The core loop is: the user presses a button to move the servo down (dipping the ring in soap), then presses again to bring it back up in front of the fan, which speeds up automatically as the ring rises, blowing air through the soap film to create a bubble. The cycle then resets for the next bubble.`
 
 ## 4.2 Intended Player / Audience
 
 | Question | Response |
 |---|---|
-| Who is this for? | `[Write here]` |
-| Age range | `[Write here]` |
-| Solo or multiplayer | `[Write here]` |
-| Expected duration of one round | `[Write here]` |
-| What should the player feel? | `[Write here]` |
-| Is explanation required before use? | `[Write here]` |
+| Who is this for? | `This is designed for children, students, and casual users who enjoy interactive and playful experiences. It can also be for adults who want to revisit their childhood memories.` |
+| Age range | `6–16 years primarily, but enjoyable for all age groups including adults in informal or exhibition settings.` |
+| Solo or multiplayer | `Primarily a solo interaction, but can be used in a shared environment where multiple users take turns or collaborate.` |
+| Expected duration of one round | `1-3 minutes per interaction, depending on how long the user chooses to engage with the controls and create bubbles.` |
+| What should the player feel? | `A sense of curiosity, control, nostalgia and satisfaction. The interaction should feel playful and rewarding, especially when the bubble is successfully formed through their input.` |
+| Is explanation required before use? | `Minimal explanation is required. Basic instructions (e.g., “Press buttons to move the ring and create bubbles”) are sufficient, as the system is intuitive and responsive.` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[How does the player first encounter it?]`
-2. **Start:** `[How do they begin?]`
-3. **First Action:** `[What do they do first?]`
-4. **Main Interaction:** `[What keeps happening during use?]`
-5. **System Response:** `[How does the project respond?]`
-6. **Win / Lose / End Condition:** `[How does one round end?]`
-7. **Reset:** `[How does the next round begin?]`
+1. **Approach:** `The player encounters the bubble machine as an interactive setup with a visible ring, fan (DC motor), and two control buttons. The moving parts and soap solution signal that it creates bubbles, inviting interaction.`
+2. **Start:** `The system is already powered on, with the ring initially dipped in the soap solution. The player begins by pressing one of the buttons.`
+3. **First Action:** `The player presses the “Up” button, causing the servo motor to lift the ring out of the soap solution.`
+4. **Main Interaction:** `The player continuously presses the Up and Down buttons to control the height of the ring. They experiment with positioning the ring at different angles to try and create bubbles.`
+5. **System Response:** `As the ring rises, the servo motor moves accordingly.
+The DC motor (fan) adjusts its speed based on the ring’s height:
+Low position → fan off
+Mid position → fan slow
+High position → fan fast
+When the ring reaches the optimal height, the fast हवा flow creates bubbles.`
+6. **Win / Lose / End Condition:** `Win condition: A successful bubble is formed when the ring is correctly positioned and airflow is sufficient.
+There is no strict lose condition, but incorrect positioning results in no bubble formation.`
+7. **Reset:** `The player presses the “Down” button to lower the ring back into the soap solution, re-coating it and preparing for the next attempt.`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1]`
-- `[Rule 2]`
-- `[Rule 3]`
-- `[Rule 4]`
+`Since this project is an interactive bubble-making machine and not a game, the following are the operating rules and guidelines for using the device:`
+- `Rule 1: Ensure the soap solution tray is filled before powering on the device, and that the ring is positioned at the minimum angle (0°) so it begins fully submerged in the solution.`
+- `Rule 2: Press the Up button to raise the servo motor incrementally (5° per press), lifting the ring out of the soap solution and into the path of the DC motor fan to create bubbles.`
+- `Rule 3: Press the Down button to lower the servo motor incrementally (5° per press), re-dipping the ring into the soap solution to reload it for the next bubble cycle.`
+- `Rule 4: Do not force the servo beyond its set limits — the ring will automatically stop at the minimum (0°) and maximum (120°) angles to prevent mechanical damage.`
 
 ---
 
@@ -186,24 +200,31 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1]`
-- [ ] `[Condition 2]`
-- [ ] `[Condition 3]`
-- [ ] `[Condition 4]`
-- [ ] `[Condition 5]`
+- [ ] `The servo motor reliably moves the ring between the minimum and maximum angles using the two control buttons without jitter or stalling.`
+- [ ] `The ring successfully dips into the soap solution and lifts out smoothly, forming a stable soap film at least most of the time.`
+- [ ] `The DC motor (fan) changes speed based on the servo angle, with clearly observable OFF, slow, and fast states.`
+- [ ] `At higher servo angles, the increased airflow consistently produces visible soap bubbles from the ring.`
+- [ ] `The system responds in real-time to user input, allowing continuous interaction (holding or pressing buttons to control bubble generation).`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-`[Write here]`
+`All you really need is a servo and a standard DC motor. Forget about buttons or fancy features just keep it straightforward. The servo handles dipping the ring into the soap and lifting it up in front of a fan. The fan runs nonstop with the DC motor, so when the ring comes up, bubbles start flying right away.
+
+Nothing complicated here. This simple setup does exactly what you want: dip the ring, lift it, make bubbles. Done.`
 
 ## 5.3 Stretch Features
 What features are nice to have but not essential?
 
-- `[Stretch feature 1]`
-- `[Stretch feature 2]`
-- `[Stretch feature 3]`
+- `Automatic operation mode – enables continuous bubble generation without manual input, improving usability.`
+- `Sensor-based activation – allows touchless operation, enhancing user interaction and efficiency.`
+- `User-adjustable fan speed – provides control over bubble size and formation, increasing flexibility.`
+- `Smooth servo motion – reduces abrupt movements, improving bubble consistency and mechanical reliability.`
+- `LED indicators – offer real-time system feedback, making operation more intuitive.`
+- `Calibration mode – allows adjustment of angle thresholds, making the system adaptable to different setups.`
+- `Power-saving functionality – reduces energy consumption by turning off components when idle.`
+- `Wireless/remote control – enables convenient operation and extends user accessibility.`
 
 ---
 
@@ -212,17 +233,17 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ ] Electronics-based
-- [ ] Mechanical
+- [YES] Electronics-based
+- [YES] Mechanical
 - [ ] Sensor-based
 - [ ] App-connected
-- [ ] Motorized
+- [YES] Motorized
 - [ ] Sound-based
 - [ ] Light-based
 - [ ] Screen/UI-based
-- [ ] Fabricated structure
+- [YES] Fabricated structure
 - [ ] Game logic based
-- [ ] Installation / tabletop experience
+- [YES] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -236,16 +257,17 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[Write here]`
+`The system is an interactive bubble-generating device that integrates user input, embedded processing, and coordinated motor control to produce a controlled physical output. User input is provided through two push buttons, which regulate the angular position of a servo motor attached to a ring. The microcontroller continuously processes these inputs and adjusts the servo motor accordingly while simultaneously evaluating the ring’s position against predefined threshold values. Based on this evaluation, the system modulates the speed of a DC motor (fan) using pulse-width modulation, establishing a direct relationship between the servo angle and airflow intensity. The physical structure comprises a servo-driven ring that dips into a soap solution and rises into the path of the fan, a DC motor positioned to generate airflow, and a motor driver to control speed variations. As the ring reaches an optimal height, increased airflow passes through the soap film, resulting in bubble formation. The system operates entirely through physical controls without any application-based interaction, demonstrating the effective synchronization of mechanical movement and electronic control to achieve a functional and responsive output.`
 
 ## 6.3 Input / Output Map
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[Button / Sensor / Switch / App Input]` | Input | `[Describe]` |
-| `[ESP32 / Controller]` | Processing | `[Describe]` |
-| `[LED / Motor / Servo / Buzzer / Display]` | Output | `[Describe]` |
-| `[Mechanical Assembly]` | Physical Action | `[Describe]` |
+| `Push Buttons (Up & Down)` | Input | `Allow the user to manually control the position of the servo motor by increasing or decreasing its angle in discrete steps.` |
+| `ESP32 Microcontroller` | Processing | `Reads button inputs, updates the servo angle, and dynamically controls the DC motor speed based on predefined angle thresholds.` |
+| `Servo Motor (Ring Mechanism)` | Output | `Moves the ring between the soap solution and the airflow zone, determining when the bubble film is formed.` |
+| `DC Motor with Fan (via L298N Driver)` | Output | `Generates airflow at variable speeds (off, slow, fast) to form bubbles when the ring reaches appropriate positions.` |
+| `Ring + Soap Solution + Fan Setup` | Physical Action | `Dips the ring into the soap solution to form a film and exposes it to airflow, resulting in bubble formation.` |
 
 ---
 
