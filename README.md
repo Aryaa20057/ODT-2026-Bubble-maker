@@ -102,7 +102,9 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[Write here]`
+`[-The experience is of interacting with a bubble-making machine where the user controls the motion using buttons. You press to move the ring down into the soap and bring it back up, and at the same time the fan responds to that movement to try and form a bubble. You’re not just watching it happen, you’re kind of “operating” it and figuring out the right timing and position to get a good bubble.
+-We want the players to feel satisfied about getting the timing right and seeing a clean bubble form, but it doesn’t happen perfectly every time, which makes it a bit playful and curious.
+-You start experimenting with how fast to press, how high to lift the ring, or when to pause.]`
 
 ## 2.3 Design Persona
 Complete the sentence below:
