@@ -393,11 +393,11 @@ Describe the main electrical connections.
 `**Response:**
 The wiring is organized around the ESP32, which acts as the central controller and is placed on the breadboard. Power from the adapter is first passed through the LM2596 buck converter to step down the voltage to a safe level. This regulated power is then distributed to the ESP32, the servo motor, and the L298N motor driver. All components share a common ground connection to ensure stable operation.
 
-The servo motor is connected to the ESP32 with three wires: power (VCC), ground (GND), and a signal wire connected to GPIO 21. This allows the ESP32 to control the angular position of the servo.
+The servo motor is connected to the ESP32 with three wires: power (VCC), ground (GND), and a signal wire connected to D21. This allows the ESP32 to control the angular position of the servo.
 
-The DC motor is connected to the output terminals of the L298N motor driver. The driver itself is connected to the ESP32 using three pins: IN1 (GPIO 27) and IN2 (GPIO 26) to control direction, and ENA (GPIO 14) for speed control using PWM.
+The DC motor is connected to the output terminals of the L298N motor driver. The driver itself is connected to the ESP32 using three pins: IN1 (D 27) and IN2 (D 26) to control direction, and ENA (D 14) for speed control using PWM.
 
-Two push buttons are connected to GPIO 18 and GPIO 19. One side of each button is connected to ground, and the other side goes to the respective GPIO pin, using the ESP32’s internal pull-up resistors to detect button presses.
+Two push buttons are connected to D 18 and D 19. One side of each button is connected to ground, and the other side goes to the respective D pin, using the ESP32’s internal pull-up resistors to detect button presses.
 
 The breadboard is used to organize these connections neatly, with jumper wires linking all components. Overall, the wiring ensures that power is properly regulated and that signals between the ESP32, motors, and user inputs are correctly established for smooth operation of the system.`
 
@@ -440,7 +440,52 @@ Include:
 - reset behavior.
 
 **Response:**  
-`[Write here]`
+`1. Startup Behavior
+When the system is powered on, all hardware components are initialized:
+Push buttons are configured as input with pull-up resistors.
+The servo motor is initialized and set to the minimum angle (ring dipped in soap solution).
+The DC motor is initialized with a default OFF state (PWM duty = 0).
+The motor driver direction pins are set so the fan rotates in a single direction.
+A message (“Bubble Machine Initialized. Ready to operate.”) is printed for confirmation.
+2. Input Handling
+Two push buttons are used:
+Up Button: increases the servo angle.
+Down Button: decreases the servo angle.
+The system continuously checks button states in a loop.
+Buttons use active-low logic (pressed = 0).
+A small delay (0.1 seconds) is used for debouncing and smooth control.
+3. Sensor Reading
+There are no external sensors in this system.
+Instead, the servo angle acts as a virtual state indicator, representing the position of the ring:
+Low angle → ring in soap solution
+Medium angle → ring out of solution
+High angle → ring in front of fan
+4. Decision Logic
+The system uses predefined angle thresholds:
+Below THRESHOLD_SLOW (45°) → fan OFF
+Between 45° and 90° → fan runs at slow speed
+Above THRESHOLD_FAST (90°) → fan runs at full speed
+The servo angle determines the state of the DC motor speed.
+5. Output Behavior
+Servo Motor Output:
+Moves up or down in steps of 5° based on button input.
+Limited between minimum (0°) and maximum (120°) angles.
+DC Motor Output:
+Controlled using PWM via the motor driver:
+0 duty → OFF
+~512 duty → Medium speed
+1023 duty → Full speed
+Speed dynamically changes based on servo position to create bubbles.
+6. Communication Logic
+There is no external communication (Wi-Fi, Bluetooth, etc.).
+Basic communication is done through the serial console:
+Prints current servo angle and movement direction for debugging and monitoring.
+7. Reset Behavior
+On reset or power cycle:
+The servo returns to the minimum angle (ring dipped in solution).
+The DC motor is turned OFF initially.
+All variables (like current angle) are reinitialized.
+The system resumes normal operation after initialization.`
 
 ## 10.3 Code Flowchart
 Insert a flowchart showing your code logic.
@@ -469,8 +514,7 @@ Suggested sequence:
 # 11. MIT App Inventor Plan
 
 ## 11.1 Is an app part of this project?
-- [ ] Yes
-- [ ] No
+- `No`
 
 If yes, complete this section.
 
@@ -486,28 +530,25 @@ Examples:
 - displaying data.
 
 **Response:**  
-`[Write here]`
+`[NA]`
 
 ## 11.3 App Features
 
 | Feature | Purpose |
 |---|---|
-| `[Bluetooth connect button]` | `[Purpose]` |
-| `[Score display]` | `[Purpose]` |
-| `[Control button / slider / label]` | `[Purpose]` |
+| `[NA]` | `[NA]` |
+| `[NA]` | `[NA]` |
+| `[NA]` | `[NA]` |
 
 ## 11.4 UI Mockup
 Insert a sketch or screenshot of the app interface.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`[NA]`
 
 ## 11.5 App Screen Flow
 
-1. `[Step 1]`
-2. `[Step 2]`
-3. `[Step 3]`
-4. `[Step 4]`
+1. `[NA]`
 
 ---
 
@@ -517,11 +558,21 @@ Insert a sketch or screenshot of the app interface.
 
 | Item | Quantity | In Kit? | Need to Buy? | Estimated Cost | Material / Spec | Why This Choice? |
 |---|---:|---|---|---:|---|---|
-| `[ESP32]` | `1` | `Yes` | `No` | `0` | `[Spec]` | `[Reason]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
+| `[ESP32]` | `1` | `Yes` | `yes` | `Rs. 331` | `Wi-Fi + Bluetooth` | `Main controller to handle inputs, servo control, and PWM for motor` |
+| `Servo Motor` | `1` | `Yes` | `No` | `0` | `180° rotation, 5V` | `Precise angular control for dipping and lifting the ring` |
+| `DC Motor` | `1` | `Yes` | `No` | `0` | `3–12V DC motor` | `Generates airflow to create bubbles` |
+| `Fan Blade` | `1` | `No` | `Yes` | `Rs. 50` | `blades` | `Generates airflow to create bubbles` |
+| `L298N Motor Driver` | `1` | `Yes` | `No` | `0` | `Dual H-bridge driver` | `Controls speed of DC motor using PWM` |
+| `LM2596 Buck Converter` | `1` | `No` | `Yes` | `Rs.104` | `Adjustable step-down module` | `Regulates voltage safely for ESP32 and motors` |
+| `Push Buttons` | `[2` | `Yes` | `No` | `0` | `Momentary tactile switches` | `User input to control servo movement (up/down)` |
+| `Potentiometer` | `1` | `No` | `Yes` | `Rs. 130` | `10kΩ variable resistor` | `Got for the previous idea` |
+| `Jumper Wires` | `15` | `Yes` | `Yes` | `Rs. 75` | `Male–Male / Male–Female` | `Electrical connections between components` |
+| `Power Supply (Adapter/Battery)` | `1` | `Yes` | `No` | `0` | `5V–12V DC supply` | `Provides stable power to system` |
+| `Bangle (Ring)` | `8` | `No` | `Yes` | `Rs. 76` | `Lightweight` | `Acts as bubble-forming loop` |
+| `Soap Solution Container` | `1` | `No` | `Yes` | `Rs.115` | `Plastic bowl/container` | `Holds soap solution for dipping ring` |
+| `Connecting Hardware (Tape, Glue)` | `1 each` | `No` | `Yes` | `Rs. 45` | `Adhesives & fasteners` | `Secures components in place` |
 
-## 12.2 Material Justification
+## 12.2 Material Justification 
 Explain why you selected your main materials and components.
 
 Examples:
@@ -531,31 +582,67 @@ Examples:
 - Why bearing instead of a plain shaft hole?
 
 **Response:**  
-`[Write here]`
+`12.2 Material Justification
+
+The materials and components used in this project were selected based on reliability, control precision, cost-efficiency, and ease of integration within a circuit-based system.
+
+1. ESP32 (Microcontroller)
+The ESP32 was chosen over simpler boards because it provides high processing capability, multiple GPIO pins, and built-in PWM support. This is essential for simultaneously controlling the servo motor, DC motor speed, and reading button inputs. It also allows future scalability (e.g., adding automation or wireless control).
+
+2. Servo Motor (for ring movement)
+A servo motor was used instead of a standard DC motor because it allows precise angular control. The project requires the ring to move to specific positions (dip in solution, rise to fan level), which cannot be reliably achieved with a DC motor without complex feedback systems. The servo ensures accuracy and repeatability.
+
+3. DC Motor with Fan (for bubble formation)
+A DC motor was selected to drive the fan because it provides continuous rotational motion. Unlike a servo, it can run at variable speeds, which is necessary to control airflow intensity for bubble formation. The speed variation (slow to fast) is critical for controlled bubble generation.
+
+4. LM2596 Buck Converter
+The LM2596 buck converter is used to step down voltage efficiently from the power supply to levels suitable for the ESP32 and motors. It was chosen over linear regulators because it is more energy-efficient, produces less heat, and can handle higher current loads required by motors.
+
+5. Push Buttons
+Push buttons provide a simple and reliable user interface for manual control of the servo motor (up and down movement). They are cost-effective, easy to integrate, and intuitive for user interaction.
+
+6. Jumper Wires
+Jumper wires were chosen for circuit connections because they allow quick prototyping, easy modifications, and secure connections without soldering, which is ideal for iterative design processes.
+
+7. Bangle (Ring Structure)
+A bangle is used as the bubble ring because of its smooth circular shape, lightweight nature, and ready availability. Compared to custom-fabricated rings, it is cost-effective and already optimized for forming consistent soap films.
+
+8. Container (Soap Solution Holder)
+A container is used to hold the soap solution due to its stability and ability to maintain sufficient depth for proper dipping. It ensures consistent coating of the ring for bubble formation.
+
+9. Power Supply (Power House Supply)
+A stable external power supply is used instead of batteries to provide consistent voltage and current, especially important for running motors without performance drops over time.Was replaced by LM2596 later.
+
+10. Fan Structure
+The fan attached to the DC motor was chosen to direct airflow efficiently through the ring. Compared to passive airflow, it provides controlled and consistent air pressure, which is necessary for forming bubbles reliably.`
 
 ## 12.3 Items to Purchase Separately
 
 | Item | Why Needed | Purchase Link | Latest Safe Date to Procure | Status |
 |---|---|---|---|---|
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
+| `ESP32` | `Previous one burned out` | `ROBU got through a friend` | `1st April 2026` | `Received` |
+| `Breadboard Power Supply` | `Previous one burned out` | `ROBU got through a friend` | `1st April 2026` | `Received` |
+| `LM2596` | `Power supply was not enough for DC motor` | `got through a friend` | `18th April 2026` | `Received` |
+| `Fan blades` | `for DC motor` | `got through a friend` | `18th April 2026` | `Received` |
+| `Jumper wires 1m` | `Needed longer wires for model` | `got through a friend` | `19th April 2026` | `Received` |
 
 ## 12.4 Budget Summary
 
 | Budget Item | Estimated Cost |
 |---|---:|
-| Electronics | `[Cost]` |
-| Mechanical parts | `[Cost]` |
-| Fabrication materials | `[Cost]` |
-| Purchased extras | `[Cost]` |
-| Contingency | `[Cost]` |
-| **Total** | `[Cost]` |
+| Electronics | `331 + 104 + 75 = Rs. 510` |
+| Mechanical parts | `50 + 76 = Rs. 126` |
+| Fabrication materials | `115 + 45 = Rs. 160` |
+| Purchased extras | `Rs. 130` |
+| Contingency | `Total so far = 510 + 126 + 160 + 130 = Rs. 926. so, 10% contingency ≈ Rs. 100 (rounded)` |
+| **Total** | `Rs. 1026` |
 
 ## 12.5 Budget Reflection
 If your cost is too high, what can be simplified, removed, substituted, or shared?
 
 **Response:**  
-`[Write here]`
+`Your cost isn’t extremely high, but it can definitely be tightened with a few smart adjustments especially since this is a prototype. The easiest win is removing unnecessary components. The potentiometer (Rs. 130) is already not used in your final system, so it can be completely eliminated. That alone cuts a noticeable chunk of the budget without affecting functionality. Next, look at substitution and reuse. The fan blade (Rs. 50) doesn’t have to be bought—you could reuse one from an old toy motor, broken fan, or even make a simple one using lightweight plastic or cardboard. Similarly, instead of buying multiple bangles (Rs. 76), you really only need one effective ring; the rest can be removed or replaced with a single wire loop or 3D-printed ring. For fabrication materials, costs can be reduced by improvisation. The soap container (Rs. 115) can be replaced with any household bowl or recycled plastic container. Tape and glue can also be shared across teams instead of each group purchasing separately. Finally, sharing high-cost electronics across teams (like the ESP32 or power supply) during testing phases can further reduce individual project cost if allowed. Overall, by removing unused components, reusing readily available materials, and sharing resources, the budget can be significantly reduced without compromising the working or concept of the project.
+`
 
 ---
 
@@ -572,32 +659,40 @@ Include:
 - how documentation will be maintained.
 
 **Response:**  
-`[Write here]`
+`Our team will work collaboratively by dividing tasks based on each member’s strengths and the requirements of the project. Responsibilities such as circuit design, coding, mechanical setup, testing, and documentation will be distributed so that each member has a defined role while still supporting others when needed.
+
+Decisions will be made through group discussions, where we both can share ideas and opinions. If there is a disagreement, the team will evaluate options based on feasibility, efficiency, and project goals, and come to a consensus. In time-sensitive situations, a majority decision will be followed.
+
+Progress will be checked regularly through short team meetings and updates at the end of each work session. We will review completed tasks, identify any issues, and plan the next steps to ensure the project stays on track.
+
+If a task is delayed, the team will first identify the reason for the delay and provide support to the member responsible. Tasks may be redistributed if necessary to meet deadlines, ensuring that overall progress is not affected.
+
+Documentation will be maintained continuously throughout the project. One or more team members will be responsible for updating the project log, including design changes, code updates, testing results, and observations. All team members will review the documentation periodically to ensure accuracy and completeness.`
 
 ## 13.2 Task Breakdown
 
 | Task ID | Task | Owner | Estimated Hours | Deadline | Dependency | Status |
 |---|---|---|---:|---|---|---|
-| T1 | `[Finalize concept]` | `[Name]` | `2` | `[Date]` | `None` | `To Do` |
-| T2 | `[Complete BOM]` | `[Name]` | `1` | `[Date]` | `T1` | `To Do` |
-| T3 | `[Test electronics]` | `[Name]` | `2` | `[Date]` | `T1` | `To Do` |
-| T4 | `[Build structure]` | `[Name]` | `4` | `[Date]` | `T1` | `To Do` |
-| T5 | `[Write control code]` | `[Name]` | `4` | `[Date]` | `T3` | `To Do` |
-| T6 | `[Integrate system]` | `[Name]` | `4` | `[Date]` | `T4, T5` | `To Do` |
-| T7 | `[Playtest]` | `[Name]` | `2` | `[Date]` | `T6` | `To Do` |
-| T8 | `[Refine and document]` | `[Name]` | `3` | `[Date]` | `T7` | `To Do` |
+| T1 | `[Finalize concept]` | `Aryaa and Hemadri` | `2` | `[Date]` | `None` | `Done` |
+| T2 | `[Complete BOM]` | `Aryaa and Hemadri` | `1` | `[Date]` | `T1` | `Done` |
+| T3 | `[Test electronics]` | `Hemadri` | `2` | `[Date]` | `T1` | `Done` |
+| T4 | `[Build structure]` | `Aryaa and Hemadri` | `4` | `[Date]` | `T1` | `Done` |
+| T5 | `[Write control code]` | `Aryaa` | `4` | `[Date]` | `T3` | `Done` |
+| T6 | `[Integrate system]` | `Aryaa and Hemadri` | `4` | `[Date]` | `T4, T5` | `Done` |
+| T7 | `[Playtest]` | `Aryaa and Hemadri` | `2` | `[Date]` | `T6` | `Done` |
+| T8 | `[Refine and document]` | `Aryaa and Hemadri` | `3` | `[Date]` | `T7` | `Done` |
 
 ## 13.3 Responsibility Split
 
 | Area | Main Owner | Support Owner |
 |---|---|---|
-| Concept and gameplay | `[Name]` | `[Name]` |
-| Electronics | `[Name]` | `[Name]` |
-| Coding | `[Name]` | `[Name]` |
-| App | `[Name]` | `[Name]` |
-| Mechanical build | `[Name]` | `[Name]` |
-| Testing | `[Name]` | `[Name]` |
-| Documentation | `[Name]` | `[Name]` |
+| Concept and gameplay | `Both` | `NA` |
+| Electronics | `Aryaa` | `Hemadri` |
+| Coding | `Hemadri` | `Aryaa` |
+| App | `NA` | `NA` |
+| Mechanical build | `Aryaa` | `Hemadri` |
+| Testing | `both` | `NA` |
+| Documentation | `Aryaa` | `Hemadri` |
 
 ---
 
