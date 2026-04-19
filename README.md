@@ -411,10 +411,10 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Question | Response |
 |---|---|
-| Power source | `[USB / battery / adapter / other]` |
-| Voltage required | `[Write here]` |
-| Current concerns | `[Write here]` |
-| Safety concerns | `[Write here]` |
+| Power source | `DC Power Adapter (primary) + regulated supply via LM2596 Buck Converter` |
+| Voltage required | `12V input (for DC motor via L298N), stepped down to 5V for ESP32 and Servo Motor using LM2596` |
+| Current concerns | `DC motor can draw high current (especially at startup/stall), which may cause voltage drops affecting ESP32 and servo. Need adequate current-rated adapter. Separate regulation for logic (ESP32) and motor load helps prevent instability.` |
+| Safety concerns | `Overheating of L298N and LM2596 under high load, risk of short circuits with jumper wires, voltage mismatch damaging ESP32 (must not exceed 5V input), proper insulation required, and secure connections to avoid sparks or failure.Also working with soap water and ellectric` |
 
 ---
 
