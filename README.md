@@ -271,7 +271,7 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/Rough%20sketch%20of%20idea`
 
 Example:
 ```md
