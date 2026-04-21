@@ -915,12 +915,12 @@ Suggested images:
 - app screenshot,
 - final build.
 
-Example:
-```md
-
-
-
-```
+response
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/Rough%20sketch%20of%20idea">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/labled%20diagram%20of%20final%20.jpeg">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/circuit%20diagram%201">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/Product%20making%201.jpeg">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/3d%20printed%20fails.jpeg">
 
 ## 17.3 Version History
 
