@@ -399,7 +399,7 @@ The breadboard is used to organize these connections neatly, with jumper wires l
 Insert a hand-drawn or software-made circuit diagram.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20circuit.jpeg">`
 
 ## 9.4 Power Plan
 
