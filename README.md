@@ -924,7 +924,7 @@ response
 <img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20circuit.jpeg">
 <img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20product">
 <video src="https://youtu.be/tTax0sm5N7Y">
-https://youtu.be/tTax0sm5N7Y
+''https://youtu.be/tTax0sm5N7Y' - video documentation'
 
 ## 17.3 Version History
 
