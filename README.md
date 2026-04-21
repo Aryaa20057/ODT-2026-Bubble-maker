@@ -1016,7 +1016,29 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-``
+`-Designing for play: 
+The best playful designs give the user a sense of agency; here, every button press has a direct and visible consequence, which is what makes it feel like play rather than just watching a machine run.
+Keeping the interaction simple, anyone could pick it up and understand it instantly.
+
+-Delight: 
+Delight came from an unexpected source, the unpredictability of bubble formation. No two cycles produce the exact same result, which kept the experience fresh.
+
+-Clarity: 
+With only two buttons, the interface was immediately self-explanatory.
+Clear code structure (defined angle thresholds like STOP_ANGLE and SPEED_UP_ANGLE) made debugging and adjusting the experience significantly easier.
+
+-Physical interaction: 
+The changing of the angle of the servo motor by only 5 degree made it easier to adjust the ring in front  of the fan to create bubble.
+
+-Player understanding:
+Users understood the cause-and-effect relationship quickly once they saw the ring move in response to their button press.
+However, the link between ring height and fan speed was not intuitive at first, players did not immediately understand why the fan was slow at one height and fast at another.
+Players had to play and understand the proper height at which the bubble forms.
+
+-Iteration
+The angle thresholds (STOP_ANGLE = 90, SPEED_UP_ANGLE = 120) were not determined mathematically, they were found through repeated physical testing, which reinforced that hardware projects cannot be fully designed on paper.
+Through early testing, we found that we need to adjust the speed to make the transition smoother and that we dont need too much speed else it makes the bubble pop without even forming properly.
+We needed to run the machine, see where the soap actually sits. Before that everything was on guesses.`
 
 ## 19.4 If You Had One More Week
 What would you improve next?
