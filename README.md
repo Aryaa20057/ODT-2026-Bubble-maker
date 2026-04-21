@@ -921,6 +921,8 @@ response
 <img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/circuit%20diagram%201">
 <img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/Product%20making%201.jpeg">
 <img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/3d%20printed%20fails.jpeg">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20circuit.jpeg">
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20product">
 
 ## 17.3 Version History
 
