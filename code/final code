@@ -1,0 +1,69 @@
+from machine import Pin, PWM
+import time
+from servo import Servo
+
+# 1. Buttons
+btn_up = Pin(18, Pin.IN, Pin.PULL_UP)   # pin 18 is button up
+btn_down = Pin(19, Pin.IN, Pin.PULL_UP) # pin 19 is button down
+
+# 2. Servo Motor
+servo_pin = Pin(21, Pin.OUT)
+ring_servo = Servo(servo_pin)
+
+# 3. L298N DC Motor Driver
+IN1 = Pin(27, Pin.OUT)
+IN2 = Pin(26, Pin.OUT)
+en = PWM(Pin(14), freq=1000)
+
+
+# Change this value after doing your tests to set exactly when the fan speeds up
+SPEED_UP_ANGLE = 120
+STOP_ANGLE = 90 # Angle at which the ring is just dipping into the soap solution (to be determined experimentally)
+
+# Set initial state for the servo to 90 degrees (outside solution)
+current_angle = 65
+ring_servo.write_angle(current_angle)
+
+print("Bubble Machine Initialized. Ready to operate.")
+
+while True:
+    # Check "Up" Button
+    if btn_up.value() == 0:
+        current_angle = current_angle + 5
+        # maximum limit of 180
+        if current_angle > 180:
+            current_angle = 180
+        ring_servo.write_angle(current_angle)
+        print("Moving Up | Angle: " + str(current_angle))
+        
+    # Check "Down" Button
+    if btn_down.value() == 0:
+        current_angle = current_angle - 5
+        # minimum limit of 0
+        if current_angle < 0:
+            current_angle = 0
+        ring_servo.write_angle(current_angle)
+        print("Moving Down | Angle: " + str(current_angle))
+
+    # --- DC Motor Speed Control ---
+    
+    if current_angle < STOP_ANGLE:
+        # Stop motor (Ring is dipping down into the soap)
+        en.duty(0)
+        IN1.value(0)
+        IN2.value(0)
+        
+    elif current_angle >= STOP_ANGLE and current_angle < SPEED_UP_ANGLE:
+        # Rotate DC Motor in clockwise direction with Medium Speed
+        en.duty(600)
+        IN1.value(0) 
+        IN2.value(1)
+        
+    else: 
+        # Rotate DC Motor in clockwise direction with Max Speed (Angle >= SPEED_UP_ANGLE)
+        en.duty(1000)
+        IN1.value(0) 
+        IN2.value(1)
+
+    
+    time.sleep(0.1)
