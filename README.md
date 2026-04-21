@@ -287,7 +287,7 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/labled%20diagram%20of%20final%20.jpeg">
 
 ## 7.3 Approximate Dimensions
 
@@ -399,7 +399,7 @@ The breadboard is used to organize these connections neatly, with jumper wires l
 Insert a hand-drawn or software-made circuit diagram.
 
 **Insert image below:**  
-`<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20circuit.jpeg">`
+<img src="https://github.com/Aryaa20057/ODT-2026-Bubble-maker/blob/main/images/final%20circuit.jpeg">
 
 ## 9.4 Power Plan
 
