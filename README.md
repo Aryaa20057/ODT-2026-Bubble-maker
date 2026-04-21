@@ -674,7 +674,7 @@ Documentation will be maintained continuously throughout the project. One or mor
 | T5 | `[Write control code]` | `Aryaa` | `4` | `15/4/26` | `T3` | `Done` |
 | T6 | `[Integrate system]` | `Aryaa and Hemadri` | `4` | `17/4/26` | `T4, T5` | `Done` |
 | T7 | `[Playtest]` | `Aryaa and Hemadri` | `2` | `18/4/26` | `T6` | `Done` |
-| T8 | `[Refine and document]` | `Aryaa and Hemadri` | `3` | `[Date]` | `T7` | `Done` |
+| T8 | `[Refine and document]` | `Aryaa and Hemadri` | `3` | `20/4/26` | `T7` | `Done` |
 
 ## 13.3 Responsibility Split
 
@@ -696,7 +696,7 @@ Documentation will be maintained continuously throughout the project. One or mor
 
 ### Week 1 — Plan and De-risk
 Expected outcomes:
-- [ ] Idea finalized
+- [ ] Idea finalized 
 - [ ] Core interaction decided
 - [ ] Sketches made
 - [ ] BOM completed
@@ -732,10 +732,10 @@ Expected outcomes:
 
 | Week | Planned Goal | What Actually Happened | What Changed | Next Steps |
 |---|---|---|---|---|
-| Week 1 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 2 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 3 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 4 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
+| Week 1 | `Finalization of the idea` | `were able to figure out the mechanism and tools` | `the difficulty of the concept was a bit confusing` | `Making sure we had the parts ready within the next week` |
+| Week 2 | `getting the components` | `we got most of the parts but not he main one (the bicycle)` | `we started to think of alternatives calling many people but couldn't find it` | `looking for a solution or alternative` |
+| Week 3 | `think of new idea that could work in a week's time` | `we got a list of ideas and got it approved` | `finalisation happened but we had to replan all the steps for the new one plus our newly bought parts were wasted` | `divide the work and make deadlines to create the new product i.e. the bubble making machine game` |
+| Week 4 | `finishing the project` | `we were able to finish it in time 2 days before the deadline` | `end moment fan did not work hence we had to rebuid fan by hand` | `finish project and documentation` |
 
 ---
 
@@ -745,16 +745,18 @@ Expected outcomes:
 
 | Risk | Type | Likelihood | Impact | Mitigation Plan | Owner |
 |---|---|---|---|---|---|
-| `[Example: Bluetooth disconnects]` | `Technical` | `Medium` | `High` | `[Fallback interaction / simplify connection flow]` | `[Name]` |
-| `[Example: Structure breaks during play]` | `Mechanical` | `Medium` | `High` | `[Reinforce joints / change material]` | `[Name]` |
-| `[Risk]` | `[Technical / Material / Time / Gameplay]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
-| `[Risk]` | `[Type]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
+| `Servo motor misalignment (ring not dipping properly)` | `Technical` | `Medium` | `High` | `Calibrate MIN_ANGLE and MAX_ANGLE; test angles before final assembly` | `Aryaa` |
+| `DC motor speed not producing bubbles` | `Technical` | `Medium` | `High` | `Adjust PWM thresholds (THRESHOLD_SLOW, THRESHOLD_FAST) and test different speeds` | `Hemadri and Aryaa` |
+| `Soap film not forming properly on ring` | `Material` | `High` | `Medium` | `Adjust soap solution ratio, test different ring sizes` | `Aryaa` |
+| `Structure instability or vibration` | `Mechanical` | `Low` | `High` | `Reinforce base, secure motors tightly, use stable frame` | `Hemadri` |
+| `Loose wiring or connection failure` | `Technical` | `Medium` | `High` | `Proper soldering, use insulation, check connections before testing` | `Hemadri` |
+
 
 ## 15.2 Biggest Unknown Right Now
 What is the single biggest uncertainty in your project at this stage?
 
 **Response:**  
-`[Write here]`
+`The biggest uncertainty at this stage is achieving consistent bubble formation. While the servo motor and DC motor can be controlled precisely through code, the actual formation of bubbles depends on external and variable factors such as soap film quality, airflow strength, and timing between the ring position and fan speed. Ensuring that these elements align reliably to produce bubbles every time remains the key challenge.`
 
 ---
 
@@ -764,34 +766,35 @@ What is the single biggest uncertainty in your project at this stage?
 
 | What Needs Testing | How You Will Test It | Success Condition |
 |---|---|---|
-| `[Bluetooth connection]` | `[Method]` | `[What counts as success?]` |
-| `[Mechanism movement]` | `[Method]` | `[What counts as success?]` |
-| `[Sensor behavior]` | `[Method]` | `[What counts as success?]` |
-| `[App communication]` | `[Method]` | `[What counts as success?]` |
+| `Servo motor movement (ring motion)` | `Press up/down buttons and observe angle changes and ring movement` | `Ring moves smoothly between MIN_ANGLE and MAX_ANGLE without jitter or stalling` |
+| `DC motor speed control (fan)` | `Move servo through angles and observe change in fan speed` | `Fan turns OFF, SLOW, and FAST correctly based on defined angle thresholds` |
+| `Button input response` | `Press buttons repeatedly and hold them` | `Each press reliably changes angle; no missed inputs or erratic behavior` |
+| `Servo + DC motor synchronization` | `Run full motion cycle and observe timing between ring position and fan speed` | `Fan speed increases exactly when ring reaches bubble position` |
+| `Bubble formation mechanism` | `Run complete system multiple times with soap solution` | `Bubbles are formed consistently when ring reaches top position` |
 
 ## 16.2 Playtesting Plan
 
 | Question | How You Will Check |
 |---|---|
-| Do players understand what to do? | `[Method]` |
-| Is the interaction satisfying? | `[Method]` |
-| Do players want another turn? | `[Method]` |
-| Is the challenge balanced? | `[Method]` |
-| Is the response clear and immediate? | `[Method]` |
+| Do players understand what to do? | `Give the device to first-time users without instructions and observe if they can figure out the button controls and purpose` |
+| Is the interaction satisfying? | `Ask users to operate the buttons and observe their reaction to bubble formation; collect quick verbal feedback` |
+| Do players want another turn? | `Check if users voluntarily try again or continue interacting after the first successful bubble` |
+| Is the challenge balanced? | `Observe if controlling the timing/position feels too easy or too difficult; adjust angle increments if needed` |
+| Is the response clear and immediate? | `Press buttons and observe delay between input (button press) and output (servo movement + fan response)` |
 
 ## 16.3 Testing and Debugging Log
 
 | Date | Problem Found | Type | What You Tried | Result | Next Action |
 |---|---|---|---|---|---|
-| `[Date]` | `[Describe issue]` | `[Technical / Mechanical / UI / Gameplay]` | `[What you did]` | `[Worked / Partly / Failed]` | `[Next step]` |
-| `[Date]` | `[Describe issue]` | `[Type]` | `[What you did]` | `[Result]` | `[Next step]` |
+| `17/4/26` | `Power house not working` | `Technical` | `swapped it with LM2596` | `Worked` | `NONE` |
+| `20/4/2026` | `Fan is no giving out enough air` | `mechanical` | `manually made the blades with a tin can` | `worked` | `none` |
 
 ## 16.4 Playtesting Notes
 
 | Tester | What They Did | What Confused Them | What They Enjoyed | What You Will Change |
 |---|---|---|---|---|
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
+| `friend 1` | `Pressed buttons to move the ring up and down and tried to create bubbles multiple times` | `Initially unsure which button moves the ring up or down` | `Enjoyed seeing the bubble form when timing was correct` | `Add simple labels or arrows on buttons for clarity` |
+| `classmate 1` | `Experimented with holding and tapping buttons to control the ring position` | `Did not understand why bubbles were not forming every time` | `Found the moment of successful bubble formation satisfying` | `Improve consistency by refining fan speed thresholds and soap solution` |
 
 ---
 
@@ -810,7 +813,28 @@ Include:
 - revisions.
 
 **Response:**  
-`[Write here]`
+`The bubble-making device was fabricated through a combination of manual construction and digital fabrication techniques, ensuring both structural stability and functional precision.`
+
+`Cutting:
+The main body of the structure was made using foam board. The foam board sheets were carefully measured and cut using precision cutters to form the base, vertical supports, and motor mounts. Openings were also cut to securely place the servo motor and DC motor in alignment.`
+
+`3D Printing:
+The bubble ring, which is the key functional component, was designed digitally and fabricated using 3D printing. This allowed for accurate geometry and a smooth surface, ensuring consistent soap film formation for bubble generation.`
+
+`Assembly:
+All foam board components were assembled to create a stable frame. The structure was designed to hold the servo motor at an appropriate height so that the ring could dip into the soap solution and rise directly in front of the DC motor (fan).`
+
+`Fastening:
+Components were fastened using a combination of hot glue and adhesive, which provided quick bonding and sufficient strength for lightweight materials like foam board. The motors were securely fixed to prevent vibration or displacement during operation.`
+
+`Wiring:
+Electrical connections were made between the servo motor, DC motor driver (L298N), buttons, and the microcontroller. Proper routing of wires was ensured to avoid tangling or interference with moving parts. Connections were tested to ensure reliable signal transmission and power delivery.`
+
+`Finishing:
+The structure was refined by reinforcing weak joints and ensuring smooth movement of the ring mechanism. Edges were cleaned, and alignment between the ring and the fan was adjusted for optimal bubble formation.`
+
+`Revisions:
+Several iterations were made during the fabrication process. Adjustments included recalibrating the servo angles, repositioning the motors for better alignment, and modifying the ring design to improve bubble consistency. The thresholds for fan speed were also fine-tuned to achieve effective bubble formation at the correct moment.`
 
 ## 17.2 Build Photos
 Add photos throughout the project.
@@ -834,9 +858,9 @@ Example:
 
 | Version | Date | What Changed | Why |
 |---|---|---|---|
-| `v1` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v2` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v3` | `[Date]` | `[Describe]` | `[Reason]` |
+| `v1` | `14/4/2026` | `Basic structure made using foam board, servo motor attached to ring and DC motor added but ran at constant speed` | `To create a working prototype and test basic bubble formation mechanism` |
+| `v2` | `16/4/2026` | `Introduced angle-based control for DC motor speed using PWM; improved alignment between ring and fan` | `To improve bubble quality and ensure air flow matches ring position` |
+| `v3` | `19/4/2026` | `Added button controls for manual servo movement; refined angle limits and thresholds; improved wiring and stability` | `To give user control, increase precision, and make the system more reliable and interactive` |
 
 ---
 
@@ -846,23 +870,31 @@ Example:
 Describe the final version of your project.
 
 **Response:**  
-`[Write here]`
+`The final version of the project is an automated bubble-making device that integrates a servo motor, a DC motor (fan), and user-controlled inputs through buttons. The servo motor controls the vertical movement of a 3D-printed ring, allowing it to dip into a soap solution and then rise into position. As the ring moves upward, the DC motor operates at variable speeds based on the angle of the servo motor. When the ring reaches an optimal height, the fan spins at high speed to create bubbles. The system is mounted on a foam board structure, with all components aligned to ensure smooth operation and consistent bubble formation. The interaction between mechanical movement and programmed control allows for a simple but effective automated system.`
 
 ## 18.2 What Works Well
-- `[Point 1]`
-- `[Point 2]`
-- `[Point 3]`
+- `The synchronization between the servo motor position and DC motor speed effectively produces bubbles at the right moment.`
+- `The button-controlled interface allows easy and precise control of the ring movement.`
+- `The 3D-printed ring design successfully holds the soap film and enables consistent bubble formation.`
 
 ## 18.3 What Still Needs Improvement
-- `[Point 1]`
-- `[Point 2]`
-- `[Point 3]`
+- `The foam board structure could be made more durable and stable using stronger materials.`
+- `The bubble formation is sometimes inconsistent and depends on environmental factors like airflow and soap quality.`
+- `The wiring and component layout could be made more compact and organized for better reliability and aesthetics.`
 
 ## 18.4 What Changed From the Original Plan
 How did the project change from the initial idea?
 
 **Response:**  
-`[Write here]`
+`## **18.4 What Changed From the Original Plan**
+
+**Response:**
+The original concept of the project was to create an interactive system where a physical bicycle would control an online car racing game. The plan involved using a reed switch to measure the wheel’s revolutions per second (to simulate speed) and a potentiometer attached to the handlebar to detect turning inputs.
+
+However, this idea was not carried forward due to practical constraints. The unavailability of a suitable bicycle and the limited time frame made it difficult to build and calibrate the system effectively. Additionally, integrating real-time physical inputs with a digital game would have required more complex setup and testing.
+
+As a result, the project was redefined into a bubble-making machine using motors and simple user inputs. This new approach allowed us to focus on a manageable system involving servo and DC motors, while still demonstrating concepts of control systems, user interaction, and circuit integration within the given constraints.
+`
 
 ---
 
@@ -874,7 +906,14 @@ What slowed you down?
 How well did you manage time, tasks, and responsibilities?
 
 **Response:**  
-`[Write here]`
+`## **19.1 Team Reflection**
+
+**Response:**
+Our team worked well in terms of collaboration and adaptability. We were able to communicate ideas clearly, divide tasks based on individual strengths, and support each other during both the design and implementation stages. Once we shifted to the bubble machine concept, we were more focused and efficient, especially in integrating the mechanical structure with the circuit and code.
+
+However, what slowed us down initially was the change in project direction. Time was lost in exploring the first idea and then transitioning to a completely new concept. Additionally, some delays occurred during testing and calibration, particularly in aligning the servo movement with the DC motor speed for consistent bubble formation.
+
+In terms of time, task, and responsibility management, we performed moderately well. While tasks were eventually distributed effectively, earlier planning and quicker decision-making could have improved our overall efficiency. Despite this, we were able to complete the project within the given timeframe by adjusting our workflow and prioritizing essential components.`
 
 ## 19.2 Technical Reflection
 What did you learn about:
@@ -897,13 +936,23 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-`[Write here]`
+`This project helped us understand how different parts come together to make a working system.
+
+In electronics, we learned how to connect and control components like the servo motor, DC motor, buttons, and the L298N driver. We got a clearer idea of how PWM works for speed control and how inputs from buttons can trigger physical actions.
+
+For coding, we learned how to translate logic into real-world behavior. Writing code to control the servo angle and link it to the fan speed showed us how small changes in code can directly affect the output. We also understood the importance of calibration and testing.
+
+In terms of mechanisms, we explored how motion works how the servo’s rotation could be used to dip and lift the ring, and how timing and positioning are important to actually form a bubble.
+
+During fabrication, we worked with foam board and a 3D-printed part, which taught us about building stable structures, aligning components properly, and making small adjustments when things didn’t fit perfectly.
+
+Finally, in integration, we realized that everything has to work together smoothly. Even if one part is slightly off whether in code, wiring, or structure  it affects the whole system. A lot of our learning came from testing, fixing, and improving the setup step by step.`
 
 ## 19.4 If You Had One More Week
 What would you improve next?
 
 **Response:**  
-`[Write here]`
+`If we had one more week, we would focus on improving both the performance and user experience of the system. First, we would refine the mechanism to make the motion smoother and more consistent, especially the dipping and lifting of the ring. This would help in forming more reliable bubbles. We would also experiment with different ring designs and sizes to improve bubble quality. On the electronics and coding side, we would try to automate the process instead of relying only on manual button inputs possibly creating a loop where the system runs on its own with optimized timing. We would also fine tune the speed control of the DC motor for better synchronization with the servo movement. In terms of fabrication, we would make the structure more durable and precise, possibly using stronger materials or better mounting techniques to reduce vibrations and misalignment. Finally, we would work on improving the overall **integration**, making the system more compact, stable, and visually clean, while reducing loose wiring and making it easier to use.`
 
 ---
 
